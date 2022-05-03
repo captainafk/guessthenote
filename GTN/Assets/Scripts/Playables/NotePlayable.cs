@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace GuessTheNote
 {
-    public abstract class Guessable : MonoBehaviour
+    public class NotePlayable : PlayableBase
     {
+
     }
 }
