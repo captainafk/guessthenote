@@ -6,6 +6,6 @@ namespace GuessTheNote
 {
     public abstract class PlayableBase : MonoBehaviour
     {
-
+        public System.Action OnInitialized;
     }
 }

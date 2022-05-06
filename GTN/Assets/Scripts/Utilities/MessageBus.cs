@@ -1,5 +1,4 @@
 using UniRx;
-using System;
 
 namespace GuessTheNote
 {
@@ -10,7 +9,7 @@ namespace GuessTheNote
             MessageBroker.Default.Publish(gameEvent);
         }
 
-        public static IObservable<T> Receive<T>() where T : GameEventBase
+        public static System.IObservable<T> Receive<T>() where T : GameEventBase
         {
             return MessageBroker.Default.Receive<T>();
         }
