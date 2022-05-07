@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GuessTheNote
@@ -7,5 +5,6 @@ namespace GuessTheNote
     public abstract class PlayableBase : MonoBehaviour
     {
         public System.Action OnInitialized;
+        [HideInInspector] public GuessableBase CorrectGuessable;
     }
 }

@@ -26,6 +26,7 @@ namespace GuessTheNote
         {
             _mainMenuCanvas.SetActive(false);
 
+            // TODO: Remove the hard coded playable
             PlayableBase playable = Instantiate(_notePlayable, _playableParent);
 
             playable.OnInitialized?.Invoke();
