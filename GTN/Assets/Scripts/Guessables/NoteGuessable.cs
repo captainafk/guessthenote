@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GuessTheNote
@@ -7,22 +5,16 @@ namespace GuessTheNote
     [CreateAssetMenu(fileName = "Note", menuName = "ScriptableObjects/Note")]
     public class NoteGuessable : GuessableBase
     {
-        [Header("Note Config")]
-        [SerializeField] private ENotes _note;
-        [SerializeField] private List<AudioClip> _audioClips;
-
-        public ENotes Note => _note;
-        public List<AudioClip> AudioClips => _audioClips;
-
+        // TODO: Add flats for B and E
         public override string ToString()
         {
-            if (_note.ToString().Length == 1)
+            if (Note.ToString().Length == 1)
             {
-                return _note.ToString();
+                return Note.ToString();
             }
             else
             {
-                return string.Format("{0}#", _note.ToString()[0]);
+                return string.Format("{0}#", Note.ToString()[0]);
             }
         }
     }

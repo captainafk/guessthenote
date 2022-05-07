@@ -99,12 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8240518ebcfd7490db9f0c73a0107a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CorrectGuessable: {fileID: 0}
   _choices:
   - {fileID: 7432678738703952405}
   - {fileID: 3985266305724131756}
   - {fileID: 8103958072637476963}
   - {fileID: 5579015613301021544}
+  CorrectGuessable: {fileID: 0}
+  GuessablePath: ScriptableObjects/NoteGuessables
 --- !u!114 &5579015613301021544 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6345939098232274494, guid: 1f4d9eccd1fd84aa59d83be4a1e72358,

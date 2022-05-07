@@ -13,12 +13,19 @@ namespace GuessTheNote
         [Header("Playables")]
         [SerializeField] private PlayableBase _notePlayable;
 
-        public List<NoteGuessable> NoteGuessables
+        private List<GuessableBase> _guessables;
+
+        public List<GuessableBase> Guessables
         {
             get
             {
-                return Resources.LoadAll<NoteGuessable>("ScriptableObjects/NoteGuessables")
-                                .ToList();
+                if (_guessables == null)
+                {
+                    _guessables = Resources.LoadAll<GuessableBase>(_notePlayable.GuessablePath)
+                                           .ToList();
+                }
+
+                return _guessables;
             }
         }
 
@@ -29,7 +36,8 @@ namespace GuessTheNote
             // TODO: Remove the hard coded playable
             PlayableBase playable = Instantiate(_notePlayable, _playableParent);
 
-            playable.OnInitialized?.Invoke();
+            playable.Init(Guessables);
+
             MessageBus.Publish(new OnPlayButtonPressed(playable));
         }
     }

@@ -22,26 +22,19 @@ namespace GuessTheNote
             _button.onClick.AddListener(() => MakeTheGuess());
         }
 
-        // TODO: Revamp this castings
         private void MakeTheGuess()
         {
-            if (_playable is NotePlayable)
+            if (_guessable == _playable.CorrectGuessable)
             {
-                var noteGuessable = (NoteGuessable)_guessable;
-                var correctGuessable = (NoteGuessable)((NotePlayable)_playable).CorrectGuessable;
+                print("Correct Guess!");
 
-                if (noteGuessable.Note == correctGuessable.Note)
-                {
-                    print("Correct Guess!");
+                MessageBus.Publish(new OnGuessMade(true));
+            }
+            else
+            {
+                print("Wrong Guess.");
 
-                    MessageBus.Publish(new OnCorrectGuess());
-                }
-                else
-                {
-                    print("Wrong Guess.");
-
-                    MessageBus.Publish(new OnIncorrectGuess());
-                }
+                MessageBus.Publish(new OnGuessMade(false));
             }
         }
     }
