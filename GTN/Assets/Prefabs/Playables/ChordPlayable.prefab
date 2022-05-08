@@ -88,4 +88,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CorrectGuessable: {fileID: 0}
-  GuessablePath: 
+  GuessablePath: ScriptableObjects/ChordGuessables

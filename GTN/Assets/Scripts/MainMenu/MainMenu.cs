@@ -22,6 +22,7 @@ namespace GuessTheNote
         [Header("Config")]
         [SerializeField] private float _buttonTweenDuration = 0.5f;
 
+        private string _guessablePath = "";
         private List<GuessableBase> _guessables;
 
         public List<GuessableBase> Guessables
@@ -31,8 +32,10 @@ namespace GuessTheNote
                 if (_guessables == null)
                 {
                     // TODO: Dynamic path string generation wrt instrument and note/chord
-                    _guessables = Resources.LoadAll<GuessableBase>(_notePlayable.GuessablePath)
+                    _guessables = Resources.LoadAll<GuessableBase>(_guessablePath)
                                            .ToList();
+
+                    print(_guessables.Count);
                 }
 
                 return _guessables;
@@ -72,6 +75,8 @@ namespace GuessTheNote
             _mainMenuCanvas.SetActive(false);
 
             print(playablePrefab.name + " initiated.");
+
+            _guessablePath = playablePrefab.GuessablePath;
 
             PlayableBase playable = Instantiate(playablePrefab, _playableParent);
 
