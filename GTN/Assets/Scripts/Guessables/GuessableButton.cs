@@ -22,6 +22,8 @@ namespace GuessTheNote
             _button.onClick.AddListener(() => MakeTheGuess());
         }
 
+        // TODO: Remove listeners when a level is done
+
         private void MakeTheGuess()
         {
             if (_guessable == _playable.CorrectGuessable)

@@ -8,13 +8,13 @@ namespace GuessTheNote
         // TODO: Add flats for B and E
         public override string ToString()
         {
-            if (Note.ToString().Length == 1)
+            if (Sound.ToString().Length == 1)
             {
-                return Note.ToString();
+                return Sound.ToString();
             }
             else
             {
-                return string.Format("{0}#", Note.ToString()[0]);
+                return string.Format("{0}#", Sound.ToString()[0]);
             }
         }
     }

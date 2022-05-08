@@ -8,11 +8,11 @@ namespace GuessTheNote
     {
         [Header("Guessable Config")]
         [SerializeField] protected EInstruments _instrument;
-        [SerializeField] private ENotes _note;
+        [SerializeField] private ESounds _sound;
         [SerializeField] private List<AudioClip> _audioClips;
 
         public EInstruments Instrument => _instrument;
-        public ENotes Note => _note;
+        public ESounds Sound => _sound;
         public List<AudioClip> AudioClips => _audioClips;
 
         #region Equals & GetHashCode
@@ -26,12 +26,12 @@ namespace GuessTheNote
         {
             return other != null &&
                    Instrument == other.Instrument &&
-                   Note == other.Note;
+                   Sound == other.Sound;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), Instrument, Note);
+            return HashCode.Combine(base.GetHashCode(), Instrument, Sound);
         }
 
         public static bool operator ==(GuessableBase left, GuessableBase right)

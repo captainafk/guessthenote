@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: C#
   m_EditorClassIdentifier: 
   _instrument: 10
-  _note: 35
+  _sound: 35
   _audioClips: []

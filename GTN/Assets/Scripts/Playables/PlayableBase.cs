@@ -6,7 +6,7 @@ namespace GuessTheNote
 {
     public abstract class PlayableBase : MonoBehaviour
     {
-        [SerializeField] private List<GuessableButton> _choices;
+        private List<GuessableButton> _choices;
 
         [HideInInspector] public GuessableBase CorrectGuessable;
 
@@ -14,6 +14,8 @@ namespace GuessTheNote
 
         public void Init(List<GuessableBase> guessables)
         {
+            _choices = GetComponentsInChildren<GuessableButton>().ToList();
+
             var randomGuessables = new List<GuessableBase>();
 
             while (randomGuessables.Count < 4) // 4 choices

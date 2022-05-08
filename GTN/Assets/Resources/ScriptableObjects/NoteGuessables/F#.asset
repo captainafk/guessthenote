@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: F#
   m_EditorClassIdentifier: 
   _instrument: 10
-  _note: 65
+  _sound: 65
   _audioClips: []

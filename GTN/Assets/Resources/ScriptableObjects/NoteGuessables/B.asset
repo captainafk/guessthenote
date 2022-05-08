@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: B
   m_EditorClassIdentifier: 
   _instrument: 10
-  _note: 20
+  _sound: 20
   _audioClips: []
