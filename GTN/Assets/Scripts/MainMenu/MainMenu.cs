@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,9 +22,12 @@ namespace GuessTheNote
 
         [Header("Config")]
         [SerializeField] private float _buttonTweenDuration = 0.5f;
+        [SerializeField] private float _playableReloadDelay = 1;
 
         private string _guessablePath = "";
         private List<GuessableBase> _guessables;
+        private PlayableBase _currentPlayable;
+        private PlayableBase _lastInstantiatedPlayable;
 
         public List<GuessableBase> Guessables
         {
@@ -34,8 +38,6 @@ namespace GuessTheNote
                     // TODO: Dynamic path string generation wrt instrument and note/chord
                     _guessables = Resources.LoadAll<GuessableBase>(_guessablePath)
                                            .ToList();
-
-                    print(_guessables.Count);
                 }
 
                 return _guessables;
@@ -46,6 +48,11 @@ namespace GuessTheNote
         {
             _playNotesButton.localScale = Vector3.zero;
             _playChordsButton.localScale = Vector3.zero;
+
+            MessageBus.Receive<OnGuessMade>().Subscribe(ge =>
+            {
+                ReloadCurrentPlayable(_playableReloadDelay);
+            });
         }
 
         public void ShowPlayableButtons()
@@ -72,17 +79,31 @@ namespace GuessTheNote
 
         private void LoadPlayable(PlayableBase playablePrefab)
         {
-            _mainMenuCanvas.SetActive(false);
+            _lastInstantiatedPlayable = playablePrefab;
 
-            print(playablePrefab.name + " initiated.");
+            _mainMenuCanvas.SetActive(false);
 
             _guessablePath = playablePrefab.GuessablePath;
 
-            PlayableBase playable = Instantiate(playablePrefab, _playableParent);
+            _currentPlayable = Instantiate(playablePrefab, _playableParent);
 
-            playable.Init(Guessables);
+            _currentPlayable.Init(Guessables);
 
-            MessageBus.Publish(new OnPlayButtonPressed(playable));
+            MessageBus.Publish(new OnPlayButtonPressed(_currentPlayable));
+        }
+
+        private void ReloadCurrentPlayable(float delay)
+        {
+            Observable.Timer(System.TimeSpan.FromSeconds(delay)).Subscribe(_ =>
+            {
+                Destroy(_currentPlayable.gameObject);
+
+                _currentPlayable = Instantiate(_lastInstantiatedPlayable, _playableParent);
+
+                _currentPlayable.Init(Guessables);
+
+                print("Playable reloaded.");
+            });
         }
     }
 }

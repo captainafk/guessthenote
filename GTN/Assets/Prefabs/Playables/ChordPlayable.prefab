@@ -69,6 +69,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4d9eccd1fd84aa59d83be4a1e72358, type: 3}
+--- !u!114 &1503101826031315286 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 117656528564620288, guid: 1f4d9eccd1fd84aa59d83be4a1e72358,
+    type: 3}
+  m_PrefabInstance: {fileID: 1548649865176671574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5250444636907262397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6746598179593630955, guid: 1f4d9eccd1fd84aa59d83be4a1e72358,
@@ -87,5 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9e8bf450fef46a08e1c7aecc41de14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playAudioClipButton: {fileID: 1503101826031315286}
   CorrectGuessable: {fileID: 0}
   GuessablePath: ScriptableObjects/ChordGuessables

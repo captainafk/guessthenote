@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _instrument: 10
   _sound: 65
-  _audioClips: []
+  _audioClips:
+  - {fileID: 8300000, guid: c642fd4c5ae6444dbb706dbfd4710a4b, type: 3}
+  - {fileID: 8300000, guid: e2d3666f153f245bf9eef858a9c478e5, type: 3}

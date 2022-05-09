@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GuessTheNote
 {
     public abstract class PlayableBase : MonoBehaviour
     {
+        [SerializeField] private Button _playAudioClipButton;
+
         private List<GuessableButton> _choices;
+        private AudioSource _audioSource;
 
         [HideInInspector] public GuessableBase CorrectGuessable;
 
@@ -15,6 +19,7 @@ namespace GuessTheNote
         public void Init(List<GuessableBase> guessables)
         {
             _choices = GetComponentsInChildren<GuessableButton>().ToList();
+            _audioSource = GetComponent<AudioSource>();
 
             var randomGuessables = new List<GuessableBase>();
 
@@ -41,6 +46,18 @@ namespace GuessTheNote
                 var rg = randomGuessables[i];
                 _choices[i].InitButton(rg);
             }
+
+            var randomAudioClip = CorrectGuessable.AudioClips.GetRandom();
+            _audioSource.clip = randomAudioClip;
+
+            PlayAudioClip();
+
+            _playAudioClipButton.onClick.AddListener(() => PlayAudioClip());
+        }
+
+        public void PlayAudioClip(float delay = 0)
+        {
+            _audioSource.PlayDelayed(delay);
         }
     }
 }
