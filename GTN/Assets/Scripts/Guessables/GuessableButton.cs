@@ -19,10 +19,9 @@ namespace GuessTheNote
             var choiceText = GetComponentInChildren<TextMeshProUGUI>();
             choiceText.text = guessable.ToString();
 
+            // TODO: Remove listeners when a level is done
             _button.onClick.AddListener(() => MakeTheGuess());
         }
-
-        // TODO: Remove listeners when a level is done
 
         private void MakeTheGuess()
         {
@@ -30,13 +29,13 @@ namespace GuessTheNote
             {
                 print("Correct Guess!");
 
-                MessageBus.Publish(new OnGuessMade(true));
+                MessageBus.Publish(new OnGuessMade(true, _guessable));
             }
             else
             {
                 print("Wrong Guess.");
 
-                MessageBus.Publish(new OnGuessMade(false));
+                MessageBus.Publish(new OnGuessMade(false, _playable.CorrectGuessable));
             }
         }
     }

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +10,13 @@ namespace GuessTheNote
     public abstract class PlayableBase : MonoBehaviour
     {
         [SerializeField] private Button _playAudioClipButton;
+        [SerializeField] private RectTransform _correctGuessPrompt;
+        [SerializeField] private RectTransform _incorrectGuessPrompt;
+        [SerializeField] private TextMeshProUGUI _correctAnswerText;
 
         private List<GuessableButton> _choices;
         private AudioSource _audioSource;
+        private System.IDisposable _d1;
 
         [HideInInspector] public GuessableBase CorrectGuessable;
 
@@ -53,6 +59,26 @@ namespace GuessTheNote
             PlayAudioClip();
 
             _playAudioClipButton.onClick.AddListener(() => PlayAudioClip());
+
+            _d1 = MessageBus.Receive<OnGuessMade>().Subscribe(ge =>
+            {
+                if (ge.IsCorrect)
+                {
+                    _correctGuessPrompt.gameObject.SetActive(true);
+                }
+                else
+                {
+                    _incorrectGuessPrompt.gameObject.SetActive(true);
+                    _correctAnswerText.text = "Correct Answer: " + ge.Guessable.ToString();
+                }
+            });
+        }
+
+        private void OnDestroy()
+        {
+            _playAudioClipButton.onClick.RemoveAllListeners();
+
+            _d1.Dispose();
         }
 
         public void PlayAudioClip(float delay = 0)

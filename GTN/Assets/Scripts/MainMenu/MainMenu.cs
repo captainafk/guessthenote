@@ -101,8 +101,6 @@ namespace GuessTheNote
                 _currentPlayable = Instantiate(_lastInstantiatedPlayable, _playableParent);
 
                 _currentPlayable.Init(Guessables);
-
-                print("Playable reloaded.");
             });
         }
     }
