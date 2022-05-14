@@ -20,10 +20,17 @@ namespace GuessTheNote
             }
         }
 
+        private void Awake() => SetToggles();
+
         public void SwitchVibration()
         {
             IsVibrationEnabled = !IsVibrationEnabled;
 
+            SetToggles();
+        }
+
+        private void SetToggles()
+        {
             _onToggle.SetActive(IsVibrationEnabled);
             _offToggle.SetActive(!IsVibrationEnabled);
         }
@@ -31,8 +38,7 @@ namespace GuessTheNote
         public void ClosePopup()
         {
             GetComponent<RectTransform>().DOScale(Vector3.zero,
-                                                  MainMenu.Instance.ButtonTweenDuration)
-                                         .OnComplete(() => gameObject.SetActive(false));
+                                                  MainMenu.Instance.ButtonTweenDuration);
         }
     }
 }

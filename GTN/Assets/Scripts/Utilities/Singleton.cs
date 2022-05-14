@@ -11,7 +11,7 @@ namespace GuessTheNote
             get
             {
                 if (_instance == null)
-                    _instance = FindObjectOfType<T>();
+                    _instance = FindObjectOfType<T>(true);
 
                 return _instance;
             }

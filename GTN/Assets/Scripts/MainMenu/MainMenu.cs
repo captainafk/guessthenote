@@ -109,7 +109,6 @@ namespace GuessTheNote
 
         public void ShowSettingsPopup()
         {
-            _settingsPopup.gameObject.SetActive(true);
             _settingsPopup.localScale = Vector3.zero;
             _settingsPopup.DOScale(Vector3.one, _buttonTweenDuration);
         }
