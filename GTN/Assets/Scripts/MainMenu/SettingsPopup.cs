@@ -5,8 +5,12 @@ namespace GuessTheNote
 {
     public class SettingsPopup : Singleton<SettingsPopup>
     {
+        [Header("References")]
         [SerializeField] private GameObject _onToggle;
         [SerializeField] private GameObject _offToggle;
+
+        [Header("Config")]
+        [SerializeField] private float _popupTweenDuration = 1;
 
         public bool IsVibrationEnabled
         {
@@ -19,6 +23,8 @@ namespace GuessTheNote
                 PlayerPrefs.SetInt("Vibration", System.Convert.ToInt32(value));
             }
         }
+
+        public float PopupTweenDuration => _popupTweenDuration;
 
         private void Awake() => SetToggles();
 
@@ -37,8 +43,9 @@ namespace GuessTheNote
 
         public void ClosePopup()
         {
-            GetComponent<RectTransform>().DOScale(Vector3.zero,
-                                                  MainMenu.Instance.ButtonTweenDuration);
+            GetComponent<RectTransform>().DOMoveX(-Screen.width / 2f,
+                                                  _popupTweenDuration)
+                                         .SetEase(Ease.InOutElastic);
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace GuessTheNote
 {
-    public class MainMenu : Singleton<MainMenu>
+    public class MainMenu : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private GameObject _mainMenuCanvas;
@@ -15,7 +15,7 @@ namespace GuessTheNote
         [SerializeField] private RectTransform _playButton;
         [SerializeField] private RectTransform _playNotesButton;
         [SerializeField] private RectTransform _playChordsButton;
-        [SerializeField] private RectTransform _settingsPopup;
+        [SerializeField] private SettingsPopup _settingsPopup;
 
         [Header("Playables")]
         [SerializeField] private PlayableBase _notePlayable;
@@ -44,8 +44,6 @@ namespace GuessTheNote
                 return _guessables;
             }
         }
-
-        public float ButtonTweenDuration => _buttonTweenDuration;
 
         private void Awake()
         {
@@ -114,8 +112,10 @@ namespace GuessTheNote
 
         public void ShowSettingsPopup()
         {
-            _settingsPopup.localScale = Vector3.zero;
-            _settingsPopup.DOScale(Vector3.one, _buttonTweenDuration);
+            _settingsPopup.GetComponent<RectTransform>()
+                          .DOMoveX(Screen.width / 2f,
+                                   _settingsPopup.PopupTweenDuration)
+                          .SetEase(Ease.InOutElastic);
         }
 
         private void ResetMainMenu()
