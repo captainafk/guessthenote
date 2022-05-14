@@ -27,14 +27,10 @@ namespace GuessTheNote
         {
             if (_guessable == _playable.CorrectGuessable)
             {
-                print("Correct Guess!");
-
                 MessageBus.Publish(new OnGuessMade(true, _guessable));
             }
             else
             {
-                print("Wrong Guess.");
-
                 MessageBus.Publish(new OnGuessMade(false, _playable.CorrectGuessable));
             }
         }

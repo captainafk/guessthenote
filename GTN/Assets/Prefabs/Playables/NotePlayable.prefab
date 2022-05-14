@@ -67,6 +67,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: NotePlayable
       objectReference: {fileID: 0}
+    - target: {fileID: 7456366189940782901, guid: 1f4d9eccd1fd84aa59d83be4a1e72358,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3887894482105562138}
+    - target: {fileID: 7456366189940782901, guid: 1f4d9eccd1fd84aa59d83be4a1e72358,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456366189940782901, guid: 1f4d9eccd1fd84aa59d83be4a1e72358,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GuessTheNote.PlayableBase, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456366189940782901, guid: 1f4d9eccd1fd84aa59d83be4a1e72358,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4d9eccd1fd84aa59d83be4a1e72358, type: 3}
 --- !u!224 &365068963320786048 stripped

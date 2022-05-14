@@ -56,6 +56,11 @@ namespace GuessTheNote
             {
                 ReloadCurrentPlayable(_playableReloadDelay);
             });
+
+            MessageBus.Receive<OnReturnedToMainMenu>().Subscribe(ge =>
+            {
+                ResetMainMenu();
+            });
         }
 
         public void ShowPlayableButtons()
@@ -111,6 +116,24 @@ namespace GuessTheNote
         {
             _settingsPopup.localScale = Vector3.zero;
             _settingsPopup.DOScale(Vector3.one, _buttonTweenDuration);
+        }
+
+        private void ResetMainMenu()
+        {
+            _playNotesButton.GetComponent<Button>()
+                            .onClick.RemoveAllListeners();
+
+            _playChordsButton.GetComponent<Button>()
+                             .onClick.RemoveAllListeners();
+
+            _playNotesButton.localScale = Vector3.zero;
+            _playChordsButton.localScale = Vector3.zero;
+
+            _mainMenuCanvas.SetActive(true);
+
+            Destroy(_currentPlayable.gameObject);
+
+            _playButton.localScale = Vector3.one;
         }
     }
 }

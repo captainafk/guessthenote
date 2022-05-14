@@ -43,7 +43,6 @@ namespace GuessTheNote
             }
 
             CorrectGuessable = randomGuessables[0];
-            print("Correct: " + CorrectGuessable.ToString());
 
             randomGuessables.Shuffle();
 
@@ -85,5 +84,7 @@ namespace GuessTheNote
         {
             _audioSource.PlayDelayed(delay);
         }
+
+        public void ReturnToMainMenu() => MessageBus.Publish(new OnReturnedToMainMenu());
     }
 }
