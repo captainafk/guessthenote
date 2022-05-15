@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -64,11 +65,13 @@ namespace GuessTheNote
                 if (ge.IsCorrect)
                 {
                     _correctGuessPrompt.gameObject.SetActive(true);
+                    _correctGuessPrompt.DOLocalMoveY(Screen.height / 2f, 1);
                 }
                 else
                 {
                     _incorrectGuessPrompt.gameObject.SetActive(true);
                     _correctAnswerText.text = "Correct Answer: " + ge.Guessable.ToString();
+                    _incorrectGuessPrompt.DOLocalMoveY(Screen.height / 2f, 1);
                 }
             });
         }

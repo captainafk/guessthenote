@@ -1492,7 +1492,7 @@ MonoBehaviour:
   _chordPlayable: {fileID: 2045590308857112343, guid: 4f0df73568f3a46cb82945219702200f,
     type: 3}
   _buttonTweenDuration: 0.5
-  _playableReloadDelay: 1
+  _playableReloadDelay: 2
 --- !u!1 &7361946439936380579
 GameObject:
   m_ObjectHideFlags: 0
