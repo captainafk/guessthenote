@@ -6,11 +6,13 @@ namespace GuessTheNote
 {
     public class HapticManager : MonoBehaviour
     {
+        [SerializeField] private VibrationManager _vibrationManager;
+
         private void Awake()
         {
             MessageBus.Receive<OnGuessMade>().Subscribe(ge =>
             {
-                if (SettingsPopup.Instance.IsVibrationEnabled)
+                if (_vibrationManager.IsVibrationEnabled)
                 {
                     if (ge.IsCorrect)
                     {
@@ -20,6 +22,14 @@ namespace GuessTheNote
                     {
                         MMVibrationManager.Haptic(HapticTypes.Failure);
                     }
+                }
+            });
+
+            MessageBus.Receive<OnVibrationOptionChanged>().Subscribe(ge =>
+            {
+                if (ge.IsEnabled)
+                {
+                    MMVibrationManager.Haptic(HapticTypes.SoftImpact);
                 }
             });
         }

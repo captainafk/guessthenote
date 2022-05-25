@@ -1,6 +1,6 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,6 @@ namespace GuessTheNote
         [SerializeField] private RectTransform _playButton;
         [SerializeField] private RectTransform _playNotesButton;
         [SerializeField] private RectTransform _playChordsButton;
-        [SerializeField] private SettingsPopup _settingsPopup;
 
         [Header("Playables")]
         [SerializeField] private PlayableBase _notePlayable;
@@ -29,6 +28,7 @@ namespace GuessTheNote
         private List<GuessableBase> _guessables;
         private PlayableBase _currentPlayable;
         private PlayableBase _lastInstantiatedPlayable;
+        private System.IDisposable _reloadDisposable;
 
         public List<GuessableBase> Guessables
         {
@@ -100,7 +100,7 @@ namespace GuessTheNote
 
         private void ReloadCurrentPlayable(float delay)
         {
-            Observable.Timer(System.TimeSpan.FromSeconds(delay)).Subscribe(_ =>
+            _reloadDisposable = Observable.Timer(System.TimeSpan.FromSeconds(delay)).Subscribe(_ =>
             {
                 Destroy(_currentPlayable.gameObject);
 
@@ -108,14 +108,6 @@ namespace GuessTheNote
 
                 _currentPlayable.Init(Guessables);
             });
-        }
-
-        public void ShowSettingsPopup()
-        {
-            _settingsPopup.GetComponent<RectTransform>()
-                          .DOMoveX(Screen.width / 2f,
-                                   _settingsPopup.PopupTweenDuration)
-                          .SetEase(Ease.InOutElastic);
         }
 
         private void ResetMainMenu()
@@ -132,6 +124,7 @@ namespace GuessTheNote
             _mainMenuCanvas.SetActive(true);
 
             Destroy(_currentPlayable.gameObject);
+            _reloadDisposable?.Dispose();
 
             _playButton.localScale = Vector3.one;
         }
