@@ -70,7 +70,7 @@ namespace GuessTheNote
                 else
                 {
                     _incorrectGuessPrompt.gameObject.SetActive(true);
-                    _correctAnswerText.text = "Correct Answer: " + ge.Guessable.ToString();
+                    _correctAnswerText.text = "Correct Answer: " + ge.CorrectGuessable.ToString();
                     _incorrectGuessPrompt.DOLocalMoveY(Screen.height / 2f, 1);
                 }
             });

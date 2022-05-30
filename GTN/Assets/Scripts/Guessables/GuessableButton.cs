@@ -25,14 +25,8 @@ namespace GuessTheNote
 
         private void MakeTheGuess()
         {
-            if (_guessable == _playable.CorrectGuessable)
-            {
-                MessageBus.Publish(new OnGuessMade(true, _guessable));
-            }
-            else
-            {
-                MessageBus.Publish(new OnGuessMade(false, _playable.CorrectGuessable));
-            }
+            MessageBus.Publish(new OnGuessMade(_guessable == _playable.CorrectGuessable,
+                                               _playable.CorrectGuessable));
         }
     }
 }

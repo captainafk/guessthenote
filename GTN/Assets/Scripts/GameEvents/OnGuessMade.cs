@@ -6,12 +6,12 @@ namespace GuessTheNote
     public class OnGuessMade : GameEventBase
     {
         public bool IsCorrect;
-        public GuessableBase Guessable;
+        public GuessableBase CorrectGuessable;
 
-        public OnGuessMade(bool isCorrect, GuessableBase guessable = null)
+        public OnGuessMade(bool isCorrect, GuessableBase correctGuessable)
         {
             IsCorrect = isCorrect;
-            Guessable = guessable;
+            CorrectGuessable = correctGuessable;
         }
     }
 }
