@@ -15,5 +15,9 @@ MonoBehaviour:
   _instrument: 10
   _sound: 40
   _audioClips:
-  - {fileID: 8300000, guid: 881d0ae10d882415688fe3b9fbb3f7bb, type: 3}
   - {fileID: 8300000, guid: d7ea167eab9e54bd69b32716ce3c9ce7, type: 3}
+  - {fileID: 8300000, guid: 881d0ae10d882415688fe3b9fbb3f7bb, type: 3}
+  - {fileID: 8300000, guid: 11cc6fb14c5ed5f45a30e5bb7ce23dee, type: 3}
+  - {fileID: 8300000, guid: cfbdb6e681ae9e64e82a19abd932caa1, type: 3}
+  - {fileID: 8300000, guid: 0ffd5419ebe289f4c8609a79dd116a7f, type: 3}
+  - {fileID: 8300000, guid: 0987fad9baef9c14f89ed371d26ef90a, type: 3}
