@@ -93,6 +93,7 @@ namespace GuessTheNote
 
             _currentPlayable = Instantiate(playablePrefab, _playableParent);
 
+            _guessables = null;
             _currentPlayable.Init(Guessables);
 
             MessageBus.Publish(new OnPlayButtonPressed(_currentPlayable));
